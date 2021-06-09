@@ -1,4 +1,4 @@
-package com.vikasrai19.flutter_tutorial
+package com.example.mobile_auth_gen
 
 import io.flutter.embedding.android.FlutterActivity
 

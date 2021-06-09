@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "425609314911",
+    "firebase_url": "https://crypt-data-d2bac-default-rtdb.firebaseio.com",
+    "project_id": "crypt-data-d2bac",
+    "storage_bucket": "crypt-data-d2bac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425609314911:android:2e097716594a226175d1ea",
+        "android_client_info": {
+          "package_name": "com.example.mobile_auth_gen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425609314911-le8rt3dgndvap00jk1lh22rqu45lfhtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa_dgDaVy4kjkMwowy8cOjRNfb_vgtQT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425609314911-le8rt3dgndvap00jk1lh22rqu45lfhtn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vikasrai19.flutter_tutorial">
+    package="com.example.mobile_auth_gen">
    <application
-        android:label="flutter_tutorial"
+        android:label="mobile_auth_gen"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

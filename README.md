@@ -1,4 +1,4 @@
-# flutter_tutorial
+# mobile_auth_gen
 
 A new Flutter project.
 

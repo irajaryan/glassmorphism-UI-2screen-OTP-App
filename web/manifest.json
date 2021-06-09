@@ -1,6 +1,6 @@
 {
-    "name": "flutter_tutorial",
-    "short_name": "flutter_tutorial",
+    "name": "mobile_auth_gen",
+    "short_name": "mobile_auth_gen",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

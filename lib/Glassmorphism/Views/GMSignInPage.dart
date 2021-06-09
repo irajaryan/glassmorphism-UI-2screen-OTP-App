@@ -1,16 +1,29 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/Glassmorphism/Constants/Colors.dart';
-import 'package:flutter_tutorial/Glassmorphism/Widgets/CustomButton.dart';
-import 'package:flutter_tutorial/Glassmorphism/Widgets/CustomSphere.dart';
-import 'package:flutter_tutorial/Glassmorphism/Widgets/CustomTextField.dart';
-import 'package:flutter_tutorial/Glassmorphism/Widgets/GlassMorphismContainer.dart';
-import 'package:flutter_tutorial/Glassmorphism/Controllers/SignInController.dart';
+import 'package:mobile_auth_gen/Glassmorphism/Widgets/CustomButton.dart';
+import 'package:mobile_auth_gen/Glassmorphism/Widgets/GlassMorphismContainer.dart';
 import 'package:get/get.dart';
-
+import 'package:crypto/crypto.dart';
 import 'GMSignUpPage.dart';
+import 'dart:convert';
 
 class GMSignInPage extends StatelessWidget {
-  final signInController = Get.put(SignInController());
+  final ref = FirebaseDatabase.instance.reference();
+  void writeData() {
+    ref.child("1011").set({
+      'key': hashGen(),
+      'timestamp': DateTime.now().toUtc().millisecondsSinceEpoch.toString()
+    });
+  }
+
+  String hashGen() {
+    var local = utf8.encode(
+        ((DateTime.now().toUtc().millisecondsSinceEpoch) / 180000)
+            .toStringAsFixed(0));
+    var digest = sha256.convert(local);
+    return digest.toString().substring(0, 6);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +35,8 @@ class GMSignInPage extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                purpleBack,
-                blueBack,
+                Colors.purple[900],
+                Colors.red[400],
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -31,22 +44,6 @@ class GMSignInPage extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              Positioned(
-                left: -50,
-                top: Get.height * 0.1,
-                child: CustomSphere(
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-              Positioned(
-                right: -50,
-                bottom: Get.height * 0.075,
-                child: CustomSphere(
-                  height: 225,
-                  width: 225,
-                ),
-              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,12 +52,27 @@ class GMSignInPage extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.symmetric(horizontal: Get.width * 0.075),
                     child: GlassMorphismContainer(
-                      height: 60.0,
-                      width: 60.0,
+                      height: 70.0,
+                      width: 70.0,
                       borderRadius: 10.0,
-                      child: Icon(
-                        Icons.notifications,
-                        color: Colors.white,
+                      child: Column(
+                        children: [
+                          Transform.scale(
+                            scale: 0.8,
+                            child: IconButton(
+                              icon: new Image.asset("assets/icon2.png"),
+                              onPressed: () {},
+                            ),
+                          ),
+                          Text(
+                            "998",
+                            style: TextStyle(
+                                fontSize: 12.0,
+                                fontFamily: "TTNorm",
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -71,55 +83,30 @@ class GMSignInPage extends StatelessWidget {
                       children: [
                         Spacer(),
                         Text(
-                          "Sign In",
+                          "Hi Raj, welcome back !",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: "TTNorm",
                           ),
                         ),
-                        Spacer(),
-                        CustomTextField(
-                          controller: signInController.email,
-                          hintText: "Email",
-                          prefixIcon: Icons.email,
+                        SizedBox(height: 100.0),
+                        GestureDetector(
+                          onTap: () {
+                            writeData();
+                            Get.to(() => GMSignUpPage());
+                          },
+                          child: CustomButton(
+                            buttonName: "Generate",
+                            paddingH: 35.0,
+                          ),
                         ),
-                        GetBuilder<SignInController>(builder: (controller) {
-                          return CustomTextField(
-                            controller: signInController.password,
-                            hintText: "Password",
-                            prefixIcon: Icons.email,
-                            isObscure: controller.isObscure,
-                            suffixIcon: Icons.remove_red_eye,
-                            onTap: () => controller.setObscure(),
-                          );
-                        }),
                         SizedBox(height: 10.0),
-                        CustomButton(
-                          buttonName: "Sign In",
-                          paddingH: 35.0,
-                        ),
+                        Text("Click on generate to get your 6- Digit PIN"),
                         Spacer(),
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () => Get.to(() => GMSignUpPage()),
-                    child: GlassMorphismContainer(
-                      height: 50.0,
-                      width: Get.width * 0.8,
-                      borderRadius: 10.0,
-                      child: Center(
-                        child: Text(
-                          "Donot Have Account, CLICK HERE",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               )
             ],

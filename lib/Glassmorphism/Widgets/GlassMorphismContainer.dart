@@ -13,6 +13,7 @@ class GlassMorphismContainer extends StatelessWidget {
     this.height,
     this.width,
     this.borderRadius = 20.0,
+    ElevatedButton children,
   }) : super(key: key);
 
   @override
